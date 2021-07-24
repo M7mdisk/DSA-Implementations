@@ -1,5 +1,6 @@
 public class BinarySearchTree<T extends Comparable<T>> {
 
+    // TODO: Add remove
     private Node root = null;
     private int size = 0;
 
@@ -55,14 +56,14 @@ public class BinarySearchTree<T extends Comparable<T>> {
         return true;
     }
 
-    public Node add(Node node, T data){
-        if(node==null){
+    public Node add(Node node, T data) {
+        if (node == null) {
             node = new Node(data);
-        }else{
-            if(data.compareTo(node.data)<0){
-                node.left = add(node.left, data))
-            }else{
-                node.right = add(node.right,data)
+        } else {
+            if (data.compareTo(node.data) < 0) {
+                node.left = add(node.left, data);
+            } else {
+                node.right = add(node.right, data);
             }
         }
 
