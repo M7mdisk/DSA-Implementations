@@ -2,8 +2,17 @@ package Algorithms.Search;
 
 public class Searcher {
 
-    public static void BFS() {
-
+    // returns the first occurance of the key, if key is not present returns -1.
+    public static <E extends Comparable<E>> int linearSearch(E[] ar, E key) {
+        int idx = -1;
+        for (int i = 0; i < ar.length; i++) {
+            if (ar[i].compareTo(key) == 0) {
+                idx = i;
+                break; // remove this statement if you want to return the last occureance of the
+                       // elment.
+            }
+        }
+        return idx;
     }
 
     /**
@@ -25,4 +34,33 @@ public class Searcher {
         }
         return -1;
     }
+
+    // return the index of the key or the largest element smaller than it.
+    public static <E extends Comparable<E>> int binarySearchOrLower(E[] ar, E key) {
+        int low = -1, high = ar.length;
+        while (low + 1 < high) {
+            int mid = (low + high) / 2;
+            if (ar[mid].compareTo(key) <= 0) {
+                low = mid;
+            } else {
+                high = mid;
+            }
+        }
+        return low;
+    }
+
+    // return the index of the key or the smallest element larger than it.
+    public static <E extends Comparable<E>> int binarySearchOrHigher(E[] ar, E key) {
+        int low = -1, high = ar.length;
+        while (low + 1 < high) {
+            int mid = (low + high) / 2;
+            if (ar[mid].compareTo(key) > 0) {
+                low = mid;
+            } else {
+                high = mid;
+            }
+        }
+        return high == ar.length ? -1 : high;
+    }
+
 }
