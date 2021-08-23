@@ -83,6 +83,20 @@ public class Sorter {
         }
     }
 
+    public static void insertionSort(int[] ar) {
+        int n = ar.length;
+        for (int i = 1; i < n; i++) {
+            int j = i - 1;
+            int key = ar[i];
+            while (j >= 0 && key < ar[j]) {
+                ar[j + 1] = ar[j];
+                j--;
+            }
+            ar[j + 1] = key;
+            System.out.println(Arrays.toString(ar));
+        }
+    }
+
     /**
      * This algorithm is O(nlogn)
      * 
@@ -102,7 +116,7 @@ public class Sorter {
         }
         mergeSort(l);
         mergeSort(r);
-        merge(ar,l,r,mid,n-mid);
+        merge(ar, l, r, mid, n - mid);
     }
 
     private static void merge(int[] a, int[] l, int[] r, int left, int right) {
