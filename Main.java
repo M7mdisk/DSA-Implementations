@@ -7,14 +7,9 @@ public class Main {
 
     public static void main(String[] args) {
 
-        DataStructures.LinkedList mylist = new DataStructures.LinkedList<>();
-        mylist.append(2);
-        mylist.append(5);
-        mylist.append(1);
-        System.out.println(mylist.toString());
-        mylist.reverse();
-        System.out.println(mylist.toString());
-        
-
+        int[] ar = {2,4,99,1,67,34,99,21};
+        System.out.println(Arrays.toString(ar));
+        Sorter.quickSort(ar);
+        System.out.println(Arrays.toString(ar));
     }
 }

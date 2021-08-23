@@ -1,5 +1,7 @@
 package Algorithms.Sorting;
 
+import java.util.Arrays;
+
 public class Sorter {
 
     private static <E> void swap(E[] a, int i, int j) {
@@ -118,5 +120,63 @@ public class Sorter {
         while (j < right) {
             a[k++] = r[j++];
         }
+    }
+
+    // Start recursive calls
+    public static void quickSort(int[] ar){
+        int n = ar.length;
+        quickSort(ar,0,n-1);
+    }
+
+    /**
+     * Given an array, start index and end index, recursively partition the array 
+     * @param ar
+     * @param start
+     * @param end
+     */
+    private static void quickSort(int[] ar,int start,int end){
+        if(start < end){
+            int pivot = partition(ar, start, end);
+            quickSort(ar,start,pivot-1);
+            quickSort(ar,pivot,end);
+        }
+    }
+
+    /**
+     * Using the last element as a pivot, place all elements smaller than the pivot to the left of it
+     * and all larger elements to the right, while also placing the pivot in its correct position 
+     * in the sorted array.
+     */
+    private static int partition(int[] ar, int start, int end){
+
+        // Chose a pivot, using the last (or first) element is very naive as if the array is already
+        // sorted the complexity will degrade into O(n^2)
+        //int pivot = ar[end]; 
+
+        // Choosing the middle element is best
+        int pivotIdx = (end+start)/2;
+        int pivot = ar[pivotIdx];
+
+        int i = start, j = end;
+        // Make everything on the left < pivot and everything on the right > pivot
+        while (i<=j){
+            
+            // find first element from the left (start) that is greater than pivot
+            while (ar[i] <pivot)
+                i++;
+
+            // find first element from the right (end) that is smaller than pivot
+            while (ar[j] > pivot)
+                j--;
+            
+            // swap if left pointer smaller than or equal right pointer
+            if (i<=j){
+                swap(ar, i, j);
+                i++;
+                j--;
+            } 
+        }
+
+        return i;
     }
 }
